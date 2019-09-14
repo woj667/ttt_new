@@ -5,10 +5,9 @@ class Game:
 
     def __init__(self):
         """Initiate game"""
-        self.Board = GameBoard()
-        self.finished = 0
+        self.board = GameBoard()
+        self.finished = False
         self.result = None
-
 
     def is_move_allowed(self):
         pass
@@ -16,12 +15,16 @@ class Game:
     def add_move(self, move):
         pass
 
-    def is_move_winning(self):
+    def get_game_result(self):
 
-        if self.Board.number_of_moves() == 9:
+        if self.board.number_of_moves() == 9:
             self.finished = True
 
         # todo code winning moves
+
+    def is_game_finished(self):
+        # todo finishing condition
+        return self.finished
 
 
 if __name__ == "__main__":
