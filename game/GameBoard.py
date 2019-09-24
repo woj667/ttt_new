@@ -1,43 +1,50 @@
+from game.GameMove import GameMove
+
+
 class GameBoard():
+    """GameBoard class stores information about each move. You can:
+    * add move (object) to the list of moves
+    * get dictionary with {key}:{value} respectively {field}:{side}"""
 
     def __init__(self):
         """Initialize game board"""
 
-        # board empty
-        self.moves_all = []
-        self.moves_nought = []
-        self.moves_cross = []
+        # empty the board
+        self.list_of_moves = []
 
-    def add_nought(self, move):
-        self.moves_nought.append(move)
-        self.moves_all.append(move)
+        # create dictionary of moves
+        self.dict_of_moves = dict()
+        for i in range(9):
+            self.dict_of_moves[i+1] = None
 
-    def add_cross(self, move):
-        self.moves_cross.append(move)
-        self.moves_all.append(move)
+    def add_move(self, field, side):
+        """Adds move (object) to the list of objects"""
+        # create object
+        move = GameMove(field, side)
 
-    def is_occupied(self, move):
-        return True if move in self.moves_all else False
+        # append moves
+        self.list_of_moves.append(move)
 
-    def number_of_moves(self):
-        return len(self.moves_all)
+    def get_moves_dict(self):
+        """Returns dictionary of all moves as {field: side}"""
+        for move in self.list_of_moves:
+            self.dict_of_moves[move.get_field()] = move.get_side()
+        return self.dict_of_moves
 
-    def list_all_moves(self):
-        return self.moves_all
-
-    def clear(self):
-        # board empty
-        self.moves_all = []
-        self.moves_nought = []
-        self.moves_cross = []
-
+    # todo
+    def get_moves_list(self):
+        pass
 
 if __name__ == "__main__":
+
     game_board = GameBoard()
-    game_board.add_cross('c1')
-    game_board.add_nought('n1')
-    game_board.add_nought('n2')
-    print("all moves: ", game_board.list_all_moves())
-    print("number of moves: ", game_board.number_of_moves())
-    print("occupied") if game_board.is_occupied('n3') else print('Free')
+    print('empty dict: ', game_board.get_moves_dict())
+
+    game_board.add_move(1, 1)
+    game_board.add_move(2, 0)
+    game_board.add_move(3, 0)
+    game_board.add_move(4, 0)
+
+    print('mod dict: ', game_board.get_moves_dict())
+
 

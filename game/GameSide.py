@@ -3,8 +3,9 @@ from enum import Enum
 
 class GameSide(Enum):
     """Noughts and crosses"""
-    nought = 1
-    cross = 2
+    nought = 0
+    cross = 1
+    empty = 2
 
 
 if __name__ == "__main__":
@@ -12,6 +13,6 @@ if __name__ == "__main__":
     for result in GameSide:
         print(result.value, '     | ', result.name)
 
-    random_side = 1
+    random_side = 0
     side = GameSide(random_side).name
     print("\nSide: ", side)
