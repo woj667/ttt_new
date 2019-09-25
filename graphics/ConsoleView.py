@@ -1,15 +1,36 @@
+from game.GameResult import GameResult
+
+
 def get_key():
-    key = int(input("Enter field: "))
-    return key
+    key = str(input("Enter field: "))
+
+    dict_of_moves = {
+        'q': 1,
+        'w': 2,
+        'e': 3,
+        'a': 4,
+        's': 5,
+        'd': 6,
+        'z': 7,
+        'x': 8,
+        'c': 9
+    }
+
+    if key in dict_of_moves:
+        value = dict_of_moves[key]
+    else:
+        value = 999
+
+    return value
 
 
 def render_board():
     print("Choose field:")
-    print("{0:^3}|{1:^3}|{2:^3}".format(1, 2, 3))
+    print("{0:^3}|{1:^3}|{2:^3}".format('q', 'w', 'e'))
     print("-----------")
-    print("{0:^3}|{1:^3}|{2:^3}".format(4, 5, 6))
+    print("{0:^3}|{1:^3}|{2:^3}".format('a', 's', 'd'))
     print("-----------")
-    print("{0:^3}|{1:^3}|{2:^3}".format(7, 8, 9))
+    print("{0:^3}|{1:^3}|{2:^3}".format('z', 'x', 'c'))
     print("\n")
 
 
@@ -37,7 +58,13 @@ def update_layout(move_dict):
 
 
 def display_result(result):
-    print(result)
+    assert result in [0, 1, 2]
+
+    if result in [0, 1]:
+        result_str = GameResult(result).name
+        print(result_str, 'won!')
+    else:
+        print('draw!')
 
 
 def display_error_msg(error_code):
@@ -49,10 +76,11 @@ def display_error_msg(error_code):
 
     print(error_list[error_code])
 
+
 def display_game_side(side):
     print("Turn:", side)
+
 
 if __name__ == "__main__":
     render_board()
     print('\n')
-    update_layout(['a', 'b', 'c','x','y','z','i','j','k'])

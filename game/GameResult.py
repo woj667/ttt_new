@@ -3,9 +3,9 @@ from enum import Enum
 
 class GameResult(Enum):
     """The winner is..."""
-    draw = 0
-    nought = 1
-    cross = 2
+    cross = 1
+    draw = 2
+    nought = 0
 
 
 if __name__ == "__main__":

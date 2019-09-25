@@ -12,7 +12,7 @@ class Game:
         # static values
         self.game_side = 0
         self.game_board = GameBoard()
-        self.dict = None
+        self.dct = None
 
         # dynamic values
         self._randomize_side()
@@ -76,7 +76,7 @@ class Game:
             draw = False
 
         if draw:
-            result = 5
+            result = 2
             game_finished = True
 
         return game_finished, result
@@ -89,12 +89,12 @@ class Game:
         for key in lst:
             values.append(dct.get(key))
 
-        equal = True
+        same = True
         for i in range(len(values) - 1):
             if values[i] != values[i + 1] or values[i] is None:
-                 equal = False
+                 same = False
 
-        return equal
+        return same
 
 
 if __name__ == "__main__":

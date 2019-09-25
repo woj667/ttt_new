@@ -1,5 +1,7 @@
 from game.Game import Game
-import graphics.ConsoleView as ConsoleView
+from graphics import ConsoleView
+
+# todo move side enum to graphics instead of core
 
 
 def run_game():
@@ -9,7 +11,7 @@ def run_game():
     # run game logic
     game_logic = Game()
 
-    while(True):
+    while True:
 
         # toggle side
         game_logic.toggle_side()
@@ -22,7 +24,7 @@ def run_game():
         key = ConsoleView.get_key()
 
         # main game loop
-        while(True):
+        while True:
             # check if value is proper & field is not occupied
             move_allowed, error = game_logic.is_move_allowed(key)
             if move_allowed:
@@ -46,7 +48,6 @@ def run_game():
         if game_finished:
             ConsoleView.display_result(result)
             break
-
 
     print("ENDGAME")
 
