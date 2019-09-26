@@ -1,5 +1,4 @@
 from game.GameBoard import GameBoard
-from game.GameSide import GameSide
 from random import randint
 
 
@@ -30,9 +29,8 @@ class Game:
     def get_moves_dict(self):
         return self.game_board.get_moves_dict()
 
-    def get_current_side_as_str(self):
-        side = GameSide(self.game_side).name
-        return side
+    def get_current_side(self):
+        return self.game_side
 
     def is_move_allowed(self, key):
 

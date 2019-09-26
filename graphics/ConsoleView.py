@@ -1,7 +1,8 @@
-from game.GameResult import GameResult
+from graphics.GameResult import GameResult
+from graphics.GameSide import GameSide
 
 
-def get_key():
+def get_field():
     key = str(input("Enter field: "))
 
     dict_of_moves = {
@@ -22,6 +23,15 @@ def get_key():
         value = 999
 
     return value
+
+
+def play_again():
+    key = str(input("Play again? y/n: "))
+
+    if key in ['y', 'Y']:
+        return True
+    else:
+        return False
 
 
 def render_board():
@@ -78,7 +88,8 @@ def display_error_msg(error_code):
 
 
 def display_game_side(side):
-    print("Turn:", side)
+    side_str = GameSide(side).name
+    print("Turn:", side_str)
 
 
 if __name__ == "__main__":

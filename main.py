@@ -1,56 +1,32 @@
-from game.Game import Game
-from graphics import ConsoleView
+from game.game_functions import menu, game, scoreboard
+import graphics.ConsoleView as ConsoleView
 
-# todo move side enum to graphics instead of core
-
-
-def run_game():
-    # show layout
-    ConsoleView.render_board()
-
-    # run game logic
-    game_logic = Game()
-
-    while True:
-
-        # toggle side
-        game_logic.toggle_side()
-
-        # display who's turn is
-        side = game_logic.get_current_side_as_str()
-        ConsoleView.display_game_side(side)
-
-        # ask for input
-        key = ConsoleView.get_key()
-
-        # main game loop
-        while True:
-            # check if value is proper & field is not occupied
-            move_allowed, error = game_logic.is_move_allowed(key)
-            if move_allowed:
-                break
-            else:
-                ConsoleView.display_error_msg(error)
-
-            # ask for input
-            key = ConsoleView.get_key()
-
-        # add move
-        game_logic.add_move(key)
-
-        # check if game finished
-        game_finished, result = game_logic.is_game_finished()
-
-        # display game board
-        move_dict = game_logic.get_moves_dict()
-        ConsoleView.update_layout(move_dict)
-
-        if game_finished:
-            ConsoleView.display_result(result)
-            break
-
-    print("ENDGAME")
-
+import pygame
+import sys
 
 if __name__ == "__main__":
-    run_game()
+
+    pygame.init()
+    creen = pygame.display.set_mode([500, 500])
+
+    running = True
+    while running:
+
+        # Did the user click the window close button?
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                # sys.exit()
+                running = False
+
+        # display menu
+        menu()
+
+        # run game
+        game()
+
+        # print scores
+        scoreboard()
+
+        # play again
+        if not ConsoleView.play_again():
+            break

@@ -1,6 +1,3 @@
-from game.GameSide import GameSide
-
-
 class GameMove:
     """GameMove class stores information about each move
         object of GameMove class contains:
@@ -9,8 +6,8 @@ class GameMove:
 
     def __init__(self, field, side):
         """This class stores info about move: nought/cross and board coordinates"""
-        assert 0 <= field <= 9
-        assert side in [0, 1]
+        assert 0 <= field <= 9, "field should be from 0 to 9"
+        assert side in [0, 1], "side should be 0 or 1"
 
         self.side = side
         self.field = field
